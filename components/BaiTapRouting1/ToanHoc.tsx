@@ -1,24 +1,41 @@
 import {Button, Pressable, StyleSheet, Text, View} from 'react-native';
 
-function ToanHoc() {
+function ToanHoc({navigation}: any) {
+  const moveToPageTinhToan = () => {
+    navigation.navigate('Caculator');
+  };
+
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Pressable style={styles.btn}>
-        <Text style={styles.btnText}>Cộng, trừ, nhân, chia</Text>
+      <Pressable
+        style={stylesBtn.btn}
+        onPress={() => {
+          navigation.navigate('Caculator');
+        }}>
+        <Text style={stylesBtn.btnText}>Cộng, trừ, nhân, chia</Text>
       </Pressable>
-      <Pressable style={styles.btn}>
-        <Text style={styles.btnText}>Phương trình bậc 1</Text>
+
+      <Pressable
+        style={stylesBtn.btn}
+        onPress={() => {
+          navigation.navigate('PTBNhat');
+        }}>
+        <Text style={stylesBtn.btnText}>Phương trình bậc 1</Text>
       </Pressable>
-      <Pressable style={styles.btn}>
-        <Text style={styles.btnText}>Phương trình bậc 2</Text>
+      <Pressable
+        style={stylesBtn.btn}
+        onPress={() => {
+          navigation.navigate('PTBHai');
+        }}>
+        <Text style={stylesBtn.btnText}>Phương trình bậc 2</Text>
       </Pressable>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
+export const stylesBtn = StyleSheet.create({
   btn: {
-    width: 350,
+    width: 300,
     padding: 10,
     marginVertical: 10,
     backgroundColor: 'pink',

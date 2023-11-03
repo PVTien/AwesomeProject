@@ -37,6 +37,10 @@ import CreatePost from './components/Post';
 import Welcome from './components/BaiTapRouting1/Welcome';
 import ToanHoc from './components/BaiTapRouting1/ToanHoc';
 import LogoHeader from './components/BaiTapRouting1/LogoHeader';
+import TinhToan from './components/BaiTapRouting1/TinhToan';
+import ResultScreen from './components/BaiTapRouting1/ResultScreen';
+import PTBacNhat from './components/BaiTapRouting1/PTBacNhat';
+import PTBacHai from './components/BaiTapRouting1/PTBacHai';
 
 // type SectionProps = PropsWithChildren<{
 //   title: string;
@@ -120,6 +124,15 @@ function App(): JSX.Element {
   //   getMovies();
   // }, []);
 
+  const optionsHeader = {
+    headerStyle: {
+      backgroundColor: 'black',
+    },
+    headerTintColor: 'pink',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  };
   return (
     // <View style={{flex: 1}}>
     //   <TextInput
@@ -172,7 +185,7 @@ function App(): JSX.Element {
     // </View>
 
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Welcome">
+      <Stack.Navigator initialRouteName="Welcome" screenListeners={{}}>
         {/* <Stack.Screen
           name="Home"
           component={HomeScreen}
@@ -180,7 +193,6 @@ function App(): JSX.Element {
         />
         <Stack.Screen name="News" component={NewsScreen} />
         <Stack.Screen name="Post" component={CreatePost} /> */}
-
         <Stack.Screen
           name="Welcome"
           component={Welcome}
@@ -190,15 +202,30 @@ function App(): JSX.Element {
           name="Math"
           component={ToanHoc}
           options={{
+            ...optionsHeader,
             title: 'Toán học',
-            headerStyle: {
-              backgroundColor: 'black',
-            },
-            headerTintColor: 'pink',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
+            headerBackVisible: false,
           }}
+        />
+        <Stack.Screen
+          name="Caculator"
+          component={TinhToan}
+          options={{...optionsHeader, title: 'Cộng, trừ, nhân, chia'}}
+        />
+        <Stack.Screen
+          name="Result"
+          component={ResultScreen}
+          options={{...optionsHeader, title: 'Kết quả'}}
+        />
+        <Stack.Screen
+          name="PTBNhat"
+          component={PTBacNhat}
+          options={{...optionsHeader, title: 'Phương trình bậc 1'}}
+        />
+        <Stack.Screen
+          name="PTBHai"
+          component={PTBacHai}
+          options={{...optionsHeader, title: 'Phương trình bậc 2'}}
         />
       </Stack.Navigator>
     </NavigationContainer>

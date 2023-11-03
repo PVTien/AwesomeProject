@@ -185,7 +185,7 @@ function App(): JSX.Element {
     // </View>
 
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Welcome" screenListeners={{}}>
+      <Stack.Navigator initialRouteName="Welcome">
         {/* <Stack.Screen
           name="Home"
           component={HomeScreen}
@@ -232,36 +232,36 @@ function App(): JSX.Element {
   );
 }
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  container: {
-    flex: 1,
-    marginTop: 20,
-  },
-  itemStyle: {
-    backgroundColor: 'pink',
-    padding: 20,
-    marginHorizontal: 16,
-    marginVertical: 8,
-  },
-  itemTitle: {
-    fontSize: 32,
-  },
-});
+// const styles = StyleSheet.create({
+//   sectionContainer: {
+//     marginTop: 32,
+//     paddingHorizontal: 24,
+//   },
+//   sectionTitle: {
+//     fontSize: 24,
+//     fontWeight: '600',
+//   },
+//   sectionDescription: {
+//     marginTop: 8,
+//     fontSize: 18,
+//     fontWeight: '400',
+//   },
+//   highlight: {
+//     fontWeight: '700',
+//   },
+//   container: {
+//     flex: 1,
+//     marginTop: 20,
+//   },
+//   itemStyle: {
+//     backgroundColor: 'pink',
+//     padding: 20,
+//     marginHorizontal: 16,
+//     marginVertical: 8,
+//   },
+//   itemTitle: {
+//     fontSize: 32,
+//   },
+// });
 
 export default App;

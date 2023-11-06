@@ -21,7 +21,10 @@ import {
   Button,
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationOptions,
+} from '@react-navigation/native-stack';
 
 import {
   Colors,
@@ -31,16 +34,17 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import Blink from './components/Blink';
-import HomeScreen from './components/Home';
 import NewsScreen from './components/News';
 import CreatePost from './components/Post';
 import Welcome from './components/BaiTapRouting1/Welcome';
 import ToanHoc from './components/BaiTapRouting1/ToanHoc';
-import LogoHeader from './components/BaiTapRouting1/LogoHeader';
 import TinhToan from './components/BaiTapRouting1/TinhToan';
 import ResultScreen from './components/BaiTapRouting1/ResultScreen';
 import PTBacNhat from './components/BaiTapRouting1/PTBacNhat';
 import PTBacHai from './components/BaiTapRouting1/PTBacHai';
+import Home from './components/Home';
+import HomeScreen from './components/HomeScreen';
+import UserCRUD from './components/BaiTapCRUD/UserCRUD';
 
 // type SectionProps = PropsWithChildren<{
 //   title: string;
@@ -124,7 +128,7 @@ function App(): JSX.Element {
   //   getMovies();
   // }, []);
 
-  const optionsHeader = {
+  const optionsHeader: NativeStackNavigationOptions = {
     headerStyle: {
       backgroundColor: 'black',
     },
@@ -185,7 +189,7 @@ function App(): JSX.Element {
     // </View>
 
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Welcome">
+      <Stack.Navigator initialRouteName="HomeScreen">
         {/* <Stack.Screen
           name="Home"
           component={HomeScreen}
@@ -194,6 +198,12 @@ function App(): JSX.Element {
         <Stack.Screen name="News" component={NewsScreen} />
         <Stack.Screen name="Post" component={CreatePost} /> */}
         <Stack.Screen
+          name="HomeScreen"
+          component={HomeScreen}
+          options={{...optionsHeader, title: 'Trang chủ'}}
+        />
+
+        <Stack.Screen
           name="Welcome"
           component={Welcome}
           options={{headerShown: false}}
@@ -201,11 +211,20 @@ function App(): JSX.Element {
         <Stack.Screen
           name="Math"
           component={ToanHoc}
-          options={{
+          options={({navigation}) => ({
             ...optionsHeader,
             title: 'Toán học',
             headerBackVisible: false,
-          }}
+            headerRight: () => (
+              <Button
+                onPress={() => {
+                  navigation.popToTop();
+                }}
+                title="Home"
+                color="#999"
+              />
+            ),
+          })}
         />
         <Stack.Screen
           name="Caculator"
@@ -226,6 +245,11 @@ function App(): JSX.Element {
           name="PTBHai"
           component={PTBacHai}
           options={{...optionsHeader, title: 'Phương trình bậc 2'}}
+        />
+        <Stack.Screen
+          name="UserCRUD"
+          component={UserCRUD}
+          options={{...optionsHeader, title: 'Quản lý người dùng'}}
         />
       </Stack.Navigator>
     </NavigationContainer>

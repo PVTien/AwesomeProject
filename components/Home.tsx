@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 import {View, Text, Button} from 'react-native';
 
-function HomeScreen({navigation, route}: any) {
+function Home({navigation, route}: any) {
   const {newsId, otherParams} = route.params;
   useEffect(() => {
     if (route.params?.post) {
@@ -38,4 +38,4 @@ function HomeScreen({navigation, route}: any) {
   );
 }
 
-export default HomeScreen;
+export default Home;

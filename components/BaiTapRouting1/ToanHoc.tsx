@@ -1,10 +1,6 @@
-import {Button, Pressable, StyleSheet, Text, View} from 'react-native';
+import {Pressable, StyleSheet, Text, View} from 'react-native';
 
 function ToanHoc({navigation}: any) {
-  const moveToPageTinhToan = () => {
-    navigation.navigate('Caculator');
-  };
-
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <Pressable
@@ -43,7 +39,7 @@ export const stylesBtn = StyleSheet.create({
     borderWidth: 1,
   },
   btnText: {
-    fontSize: 30,
+    fontSize: 25,
     textAlign: 'center',
   },
 });

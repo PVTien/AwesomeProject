@@ -5,31 +5,25 @@ import {stylesBtn} from './ToanHoc';
 function TinhToan({navigation}: any) {
   const [numberA, setNumberA] = useState('');
   const [numberB, setNumberB] = useState('');
-  const [operator, setOperator] = useState('');
-  const [calculateResult, setCalculateResult] = useState(0);
+  const [operator, setOperator] = useState('+');
 
-  const calculate = {
-    '+': function (a: number, b: number) {
-      setCalculateResult(a + b);
-      setOperator('+');
-    },
-    '-': function (a: number, b: number) {
-      setCalculateResult(a - b);
-      setOperator('-');
-    },
-    '*': function (a: number, b: number) {
-      setCalculateResult(a * b);
-      setOperator('*');
-    },
-    '/': function (a: number, b: number) {
-      setCalculateResult(a / b);
-      setOperator('/');
-    },
+  const calculate = (operator: string) => {
+    switch (operator) {
+      case '+':
+        return +numberA + +numberB;
+      case '-':
+        return +numberA - +numberB;
+      case '*':
+        return +numberA * +numberB;
+      case '/':
+        return +numberA / +numberB;
+    }
   };
 
   const excuteCalculate = () => {
     setNumberA('');
     setNumberB('');
+    const calculateResult = calculate(operator);
     navigation.navigate('Result', {result: calculateResult});
   };
 
@@ -47,7 +41,8 @@ function TinhToan({navigation}: any) {
           ...InputStyles.inputText,
           height: 50,
           width: 50,
-          backgroundColor: 'silver',
+          backgroundColor: '#fff',
+          color: 'black',
           textAlign: 'center',
         }}
         editable={false}
@@ -69,28 +64,28 @@ function TinhToan({navigation}: any) {
         <Pressable
           style={InputStyles.btnCalculator}
           onPress={() => {
-            calculate['+'](Number(numberA), Number(numberB));
+            setOperator('+');
           }}>
           <Text style={stylesBtn.btnText}>+</Text>
         </Pressable>
         <Pressable
           style={InputStyles.btnCalculator}
           onPress={() => {
-            calculate['-'](Number(numberA), Number(numberB));
+            setOperator('-');
           }}>
           <Text style={stylesBtn.btnText}>_</Text>
         </Pressable>
         <Pressable
           style={InputStyles.btnCalculator}
           onPress={() => {
-            calculate['*'](Number(numberA), Number(numberB));
+            setOperator('*');
           }}>
           <Text style={stylesBtn.btnText}>*</Text>
         </Pressable>
         <Pressable
           style={InputStyles.btnCalculator}
           onPress={() => {
-            calculate['/'](Number(numberA), Number(numberB));
+            setOperator('/');
           }}>
           <Text style={stylesBtn.btnText}>/</Text>
         </Pressable>
@@ -104,7 +99,7 @@ function TinhToan({navigation}: any) {
   );
 }
 
-const InputStyles = StyleSheet.create({
+export const InputStyles = StyleSheet.create({
   inputText: {
     height: 80,
     width: 300,

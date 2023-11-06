@@ -1,10 +1,9 @@
-import {View, Text, TextInput} from 'react-native';
-import {useState, useEffect} from 'react';
+import {View, Text} from 'react-native';
 
 function ResultScreen({route}: any) {
   return (
-    <View style={{flex: 1, alignItems: 'center'}}>
-      <Text style={{fontSize: 30, marginTop: 20}}>{route.params.result}</Text>
+    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+      <Text style={{fontSize: 25, padding: 10}}>{route.params.result}</Text>
     </View>
   );
 }

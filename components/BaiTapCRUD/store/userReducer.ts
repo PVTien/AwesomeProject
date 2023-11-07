@@ -8,6 +8,7 @@ const initState = {
   inputEmail: '',
   listUser: <User[]>[],
   isUpdate: false,
+  idxUpdate: null,
 };
 
 function userReducer(state = initState, action: any) {
@@ -37,15 +38,22 @@ function userReducer(state = initState, action: any) {
         ...state,
         listUser: [...newArr],
       };
+    case 'SET_IS_UPDATE':
+      return {
+        ...state,
+        isUpdate: !state.isUpdate,
+      };
     case 'GET_INFO':
       return {
         ...state,
-        isUpdate: true,
+        idxUpdate: action.payload,
       };
     case 'UPDATE_USER':
+      state.listUser[action.payload].name = state.inputName;
+      state.listUser[action.payload].email = state.inputEmail;
       return {
         ...state,
-        listUser: [...state.listUser, state.listUser[action.payload]],
+        listUser: [...state.listUser],
       };
     default:
       return state;

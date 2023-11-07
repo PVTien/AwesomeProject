@@ -1,18 +1,20 @@
 import {View, Text, Pressable, Alert} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {stylesBtnCRUD} from './UserCRUD';
 import {
   deleteUserAction,
-  getInfo,
+  getInfoAction,
   inputEmailAction,
   inputNameAction,
+  setIsUpdateAction,
 } from './store/userActions';
 
 function UserItem({nameUser, emailUser, idx}: any) {
   const dispatch = useDispatch();
 
   const getInfoUser = () => {
-    dispatch(getInfo());
+    dispatch(setIsUpdateAction());
+    dispatch(getInfoAction(idx));
     dispatch(inputNameAction(nameUser));
     dispatch(inputEmailAction(emailUser));
   };
@@ -24,7 +26,10 @@ function UserItem({nameUser, emailUser, idx}: any) {
       [
         {
           text: 'Có',
-          onPress: () => dispatch(deleteUserAction(idx)),
+          onPress: () => {
+            dispatch(deleteUserAction(idx)), dispatch(inputNameAction(''));
+            dispatch(inputEmailAction(''));
+          },
         },
         {
           text: 'Không',

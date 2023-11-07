@@ -9,7 +9,6 @@ import {
   FlatList,
   Alert,
 } from 'react-native';
-import {useState, useRef} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {InputStyles} from '../BaiTapRouting1/TinhToan';
 import {stylesBtn} from '../BaiTapRouting1/ToanHoc';
@@ -17,7 +16,8 @@ import UserItem from './UserItem';
 import {
   inputEmailAction,
   inputNameAction,
-  saveListUser,
+  saveListUserAction,
+  setIsUpdateAction,
   updateUserAction,
 } from './store/userActions';
 
@@ -26,6 +26,7 @@ function UserCRUD() {
   const inputEmail = useSelector((state: any) => state.userReducer.inputEmail);
   const listUser = useSelector((state: any) => state.userReducer.listUser);
   const isUpdate = useSelector((state: any) => state.userReducer.isUpdate);
+  const idxUpdate = useSelector((state: any) => state.userReducer.idxUpdate);
 
   const dispatch = useDispatch();
 
@@ -33,7 +34,7 @@ function UserCRUD() {
     if (inputName === '' || inputEmail === '') {
       Alert.alert('Lưu ý!', 'Thông tin không được để trống.');
     } else {
-      dispatch(saveListUser());
+      dispatch(saveListUserAction());
       dispatch(inputNameAction(''));
       dispatch(inputEmailAction(''));
     }
@@ -45,7 +46,10 @@ function UserCRUD() {
   };
 
   const updateUser = () => {
-    dispatch(updateUserAction({name: inputName, email: inputEmail}));
+    dispatch(updateUserAction(idxUpdate));
+    dispatch(setIsUpdateAction());
+    dispatch(inputNameAction(''));
+    dispatch(inputEmailAction(''));
   };
 
   return (
@@ -71,7 +75,7 @@ function UserCRUD() {
           <Text style={stylesBtn.btnText}>Làm mới</Text>
         </Pressable>
         {isUpdate ? (
-          <Pressable style={stylesBtnCRUD.btnAction}>
+          <Pressable style={stylesBtnCRUD.btnAction} onPress={updateUser}>
             <Text style={stylesBtn.btnText}>Cập nhật</Text>
           </Pressable>
         ) : (

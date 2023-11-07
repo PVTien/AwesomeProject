@@ -12,7 +12,7 @@ export const inputEmailAction = (payload: any) => {
   };
 };
 
-export const saveListUser = () => {
+export const saveListUserAction = () => {
   return {
     type: 'SAVE_LIST_USER',
   };
@@ -25,9 +25,16 @@ export const deleteUserAction = (payload: any) => {
   };
 };
 
-export const getInfo = () => {
+export const setIsUpdateAction = () => {
+  return {
+    type: 'SET_IS_UPDATE',
+  };
+};
+
+export const getInfoAction = (payload: any) => {
   return {
     type: 'GET_INFO',
+    payload,
   };
 };
 

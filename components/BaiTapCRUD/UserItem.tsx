@@ -1,5 +1,5 @@
 import {View, Text, Pressable, Alert} from 'react-native';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {stylesBtnCRUD} from './UserCRUD';
 import {
   deleteUserAction,
@@ -10,13 +10,16 @@ import {
 } from './store/userActions';
 
 function UserItem({nameUser, emailUser, idx}: any) {
+  const isUpdate = useSelector((state: any) => state.userReducer.isUpdate);
   const dispatch = useDispatch();
 
   const getInfoUser = () => {
-    dispatch(setIsUpdateAction());
-    dispatch(getInfoAction(idx));
-    dispatch(inputNameAction(nameUser));
-    dispatch(inputEmailAction(emailUser));
+    if (!isUpdate) {
+      dispatch(setIsUpdateAction());
+      dispatch(getInfoAction(idx));
+      dispatch(inputNameAction(nameUser));
+      dispatch(inputEmailAction(emailUser));
+    }
   };
 
   const deleteItem = () => {

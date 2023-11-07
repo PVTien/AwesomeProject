@@ -41,6 +41,9 @@ function UserCRUD() {
   };
 
   const resetInput = () => {
+    if (isUpdate) {
+      dispatch(setIsUpdateAction());
+    }
     dispatch(inputNameAction(''));
     dispatch(inputEmailAction(''));
   };
@@ -86,19 +89,13 @@ function UserCRUD() {
       </View>
       {/* List User */}
       <SafeAreaView style={{flex: 1}}>
-        <ScrollView style={{marginTop: 10}}>
-          <FlatList
-            data={listUser}
-            renderItem={({item, index}) => (
-              <UserItem
-                nameUser={item.name}
-                emailUser={item.email}
-                idx={index}
-              />
-            )}
-            keyExtractor={(item, index) => String(index)}
-          />
-        </ScrollView>
+        <FlatList
+          data={listUser}
+          renderItem={({item, index}) => (
+            <UserItem nameUser={item.name} emailUser={item.email} idx={index} />
+          )}
+          keyExtractor={(item, index) => String(index)}
+        />
       </SafeAreaView>
     </View>
   );

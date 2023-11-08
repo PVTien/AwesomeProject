@@ -34,7 +34,6 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import Blink from './components/Blink';
-import NewsScreen from './components/News';
 import CreatePost from './components/Post';
 import Welcome from './components/BaiTapRouting1/Welcome';
 import ToanHoc from './components/BaiTapRouting1/ToanHoc';
@@ -45,6 +44,10 @@ import PTBacHai from './components/BaiTapRouting1/PTBacHai';
 import Home from './components/Home';
 import HomeScreen from './components/HomeScreen';
 import UserCRUD from './components/BaiTapCRUD/UserCRUD';
+import CalculatorScreen from './components/appCalculator/calculatorScreen';
+import SignInScreen from './components/signInScreen/signInScreen';
+import NewsScreen from './components/newsScreen/newsScreen';
+import News from './components/News';
 
 // type SectionProps = PropsWithChildren<{
 //   title: string;
@@ -189,14 +192,33 @@ function App(): JSX.Element {
     // </View>
 
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="HomeScreen">
+      <Stack.Navigator initialRouteName="NewsScreen">
         {/* <Stack.Screen
           name="Home"
           component={HomeScreen}
           initialParams={{newsId: 20}}
         />
-        <Stack.Screen name="News" component={NewsScreen} />
+        <Stack.Screen name="News" component={News} />
         <Stack.Screen name="Post" component={CreatePost} /> */}
+
+        <Stack.Screen
+          name="CalculatorScreen"
+          component={CalculatorScreen}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="SignInScreen"
+          component={SignInScreen}
+          options={{headerShown: false}}
+        />
+
+        <Stack.Screen
+          name="NewsScreen"
+          component={NewsScreen}
+          options={{headerShown: false}}
+        />
+
         <Stack.Screen
           name="HomeScreen"
           component={HomeScreen}

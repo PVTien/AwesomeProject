@@ -1,6 +1,6 @@
 import {View, Button, Text} from 'react-native';
 
-function NewsScreen({navigation, route}: any) {
+function News({navigation, route}: any) {
   const {newsId, otherParams} = route.params;
 
   return (
@@ -36,4 +36,4 @@ function NewsScreen({navigation, route}: any) {
   );
 }
 
-export default NewsScreen;
+export default News;

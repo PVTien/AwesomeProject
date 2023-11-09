@@ -1,29 +1,36 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Pressable,
-  ScrollView,
-  ImageBackground,
-} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import KeyboardScreen from './keyboard.component';
 import {useSelector} from 'react-redux';
 
 function CalculatorScreen() {
-  const showCalculate = useSelector(
-    (state: any) => state.calculatorReducer.showCalculate,
+  const stringNumberA = useSelector(
+    (state: any) => state.calculatorReducer.stringNumberA,
   );
-  console.log(showCalculate);
+  const stringNumberB = useSelector(
+    (state: any) => state.calculatorReducer.stringNumberB,
+  );
+  const stringOperator = useSelector(
+    (state: any) => state.calculatorReducer.stringOperator,
+  );
+  const stringCalculate = useSelector(
+    (state: any) => state.calculatorReducer.stringCalculate,
+  );
+
+  const showCalculate = `${stringNumberA}${stringOperator}${stringNumberB}`;
 
   return (
     <View style={{flex: 1}}>
-      <View style={[calculatorStyles.screenResult, {flex: 3}]}>
-        <ScrollView style={{flex: 2}} horizontal>
-          <Text style={calculatorStyles.textResult}>{showCalculate}</Text>
-        </ScrollView>
-        <Text style={[calculatorStyles.textResult, {flex: 1}]}>0</Text>
+      <View style={[calculatorStyles.screenResult, {flex: 4}]}>
+        <Text
+          style={[
+            calculatorStyles.textResult,
+            {borderBottomWidth: 1, borderBottomColor: 'gray'},
+          ]}>
+          {showCalculate}
+        </Text>
+        <Text style={[calculatorStyles.textResult]}>{stringCalculate}</Text>
       </View>
-      <View style={{flex: 7}}>
+      <View style={{flex: 6}}>
         <View style={{flex: 1, flexDirection: 'row'}}>
           <KeyboardScreen
             keyName={'AC'}
@@ -124,12 +131,12 @@ const calculatorStyles = StyleSheet.create({
     backgroundColor: '#000000',
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
-    paddingHorizontal: 20,
+    paddingHorizontal: 15,
     paddingVertical: 5,
   },
   textResult: {
     color: 'white',
-    fontSize: 80,
+    fontSize: 50,
     fontWeight: '300',
   },
   colorNumber: {

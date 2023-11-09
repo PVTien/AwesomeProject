@@ -192,7 +192,7 @@ function App(): JSX.Element {
     // </View>
 
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="NewsScreen">
+      <Stack.Navigator initialRouteName="CalculatorScreen">
         {/* <Stack.Screen
           name="Home"
           component={HomeScreen}

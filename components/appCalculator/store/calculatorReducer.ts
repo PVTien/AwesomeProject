@@ -70,6 +70,39 @@ function calculatorReducer(state = initState, action: any) {
         stringCalculate: `0`,
       };
 
+    case 'PERCENT_CLICK_ACTION':
+      if (state.stringNumberB === '' && state.stringOperator === '') {
+        const calculatePercent = +state.stringNumberA / 100;
+
+        return {
+          ...state,
+          stringCalculate: `${calculatePercent}`,
+        };
+      } else if (state.stringNumberB !== '' && state.stringOperator !== '') {
+        let calculatePercent = 0;
+        const numberA = +state.stringNumberA;
+        const numberB = +state.stringNumberB / 100;
+
+        switch (state.stringOperator) {
+          case '+':
+            calculatePercent = numberA + numberB * numberA;
+            break;
+          case '-':
+            calculatePercent = numberA - numberB * numberA;
+            break;
+          case '*':
+            calculatePercent = numberA * numberB;
+            break;
+          case '/':
+            calculatePercent = numberA / numberB;
+            break;
+        }
+
+        return {
+          ...state,
+          stringCalculate: `${calculatePercent}`,
+        };
+      }
     default:
       return state;
   }

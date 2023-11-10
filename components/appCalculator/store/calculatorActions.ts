@@ -23,3 +23,9 @@ export const clearClickAction = () => {
     type: 'CLEAR_CLICK_ACTION',
   };
 };
+
+export const percentClickAction = () => {
+  return {
+    type: 'PERCENT_CLICK_ACTION',
+  };
+};

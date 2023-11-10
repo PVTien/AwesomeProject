@@ -5,6 +5,7 @@ import {
   equalClickAction,
   numberClickAction,
   operatorClickAction,
+  percentClickAction,
 } from './store/calculatorActions';
 
 function KeyboardScreen({
@@ -40,6 +41,9 @@ function KeyboardScreen({
         break;
       case 'AC':
         dispatch(clearClickAction());
+        break;
+      case '%':
+        dispatch(percentClickAction());
         break;
     }
   };
